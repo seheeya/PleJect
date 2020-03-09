@@ -1,6 +1,7 @@
 package conn;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +9,9 @@ import javax.servlet.http.HttpSession;
 import conn.ActionAnnotation;
 import conn.RequestMapping;
 import conn.RequestMapping.RequestMethod;
+import dao.InterestDao;
 import dao.LogonDao;
+import model.InterestDataBean;
 import model.LogonDataBean;
 
 public class MemberController extends ActionAnnotation {
@@ -88,7 +91,12 @@ public class MemberController extends ActionAnnotation {
 		manager.insertMember(member);
 		session.setAttribute("name", member.getName());
 		
-		return "/view/member/signUpPro.jsp";
+		InterestDao service = InterestDao.getInstance();
+		List<InterestDataBean> interestList = service.allgetTit();
+		// System.out.println(interestList.get(0));
+		request.setAttribute("interestList", interestList);
+		
+		return "/view/content/memberLikeForm.jsp";
 	}
 
 	
