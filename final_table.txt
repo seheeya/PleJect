@@ -1,0 +1,70 @@
+/* 회원 */
+create table member(
+email varchar(80) not null primary key, /* 1. 이메일 */
+gender varchar(5) not null, /* 2. 성별 */
+name varchar(50) not null, /* 3. 닉네임 */
+password varchar(50) not null, /* 4. 비밀번호 */
+phone varchar(20) not null, /* 5. 전화번호 */
+birthday varchar(20) not null, /* 6. 생일 */
+address varchar(80) not null); /* 7. 내지역 */
+
+-----------------------------------------------------------------------------
+/* 관심사 */
+create table interest(
+interestNum int auto_increment primary key, /* 관심사번호*/
+interestName varchar(30) not null
+);
+
+insert into interest(interestName) values ('아웃도어/여행');
+insert into interest(interestName) values ('운동/스포츠');
+insert into interest(interestName) values ('인문학/책/글');
+insert into interest(interestName) values ('외국/언어');
+insert into interest(interestName) values ('문화/공연/축제');
+insert into interest(interestName) values ('음악/악기');
+insert into interest(interestName) values ('공예/만들기');
+insert into interest(interestName) values ('댄스/무용');
+insert into interest(interestName) values ('봉사활동');
+insert into interest(interestName) values ('사교/인맥');
+insert into interest(interestName) values ('차/오토바이');
+insert into interest(interestName) values ('사진/영상');
+insert into interest(interestName) values ('야구관람');
+insert into interest(interestName) values ('게임/오락');
+insert into interest(interestName) values ('요리/제조');
+insert into interest(interestName) values ('반려동물');
+insert into interest(interestName) values ('가족/결혼');
+insert into interest(interestName) values ('자유주제');
+
+---------------------------------------------------------------------------------------------------------------
+/* 관심사_sub */
+create table interest_sub(
+interNum int not null,
+interSubNum int auto_increment primary key, /* 관심사번호*/
+interSubName varchar(30) not null,
+FOREIGN KEY (interNum) REFERENCES interest(interestNum) ON UPDATE CASCADE
+);
+
+insert into interest_sub(interNum, interSubName) values (1, '등산');
+insert into interest_sub(interNum, interSubName) values (1, '산책/트래킹');
+insert into interest_sub(interNum, interSubName) values (1, '캠핑/백패킹');
+insert into interest_sub(interNum, interSubName) values (1, '국내여행');
+insert into interest_sub(interNum, interSubName) values (1, '해외여행');
+insert into interest_sub(interNum, interSubName) values (1, '낚시');
+insert into interest_sub(interNum, interSubName) values (1, '패러글라이딩');
+
+insert into interest_sub(interNum, interSubName) values (2, '테니스');
+insert into interest_sub(interNum, interSubName) values (2, '야구');
+insert into interest_sub(interNum, interSubName) values (2, '축구');
+insert into interest_sub(interNum, interSubName) values (2, '스쿼시');
+insert into interest_sub(interNum, interSubName) values (2, '배드민턴');
+insert into interest_sub(interNum, interSubName) values (2, '농구');
+insert into interest_sub(interNum, interSubName) values (2, '탁구');
+
+-------------------------------------------------------------------------------------------
+select * from interest_sub;
+select interestName from interest;
+select * from member;
+drop table member;
+commit;
+
+insert into member values ('anandan1030@naver.com', '여', '나윤', 1111, 01092470732, 19941030, '전남순천시');
+select * from member where name = '나윤';
