@@ -1,4 +1,4 @@
-/* 회원 */
+/* 회원 */우빈아 남아서 공부하자
 create table member(
 email varchar(80) not null primary key, /* 1. 이메일 */
 gender varchar(5) not null, /* 2. 성별 */
